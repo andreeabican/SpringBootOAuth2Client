@@ -9,9 +9,9 @@ import java.net.URISyntaxException;
 /**
  * Created by andre on 10.08.2016.
  */
-public class LoginGoogleEndpoint implements ICommand{
+public class LoginFacebookEndpoint implements ICommand {
 
-    private final String uriString = "http://localhost:8181/login/google";
+    private final String uriString = "http://localhost:8181/login/facebook";
 
     @Override
     public void execute() throws URISyntaxException {

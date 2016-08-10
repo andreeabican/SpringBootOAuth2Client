@@ -35,7 +35,11 @@ public class OAuthClientApplication {
                 }
 
                 command = commandParser.getCommand(input);
-                command.execute();
+                if(command != null) {
+                    command.execute();
+                }else{
+                    System.out.println("Not a good endpoint");
+                }
                 System.out.println("-----------\n");
             }
 

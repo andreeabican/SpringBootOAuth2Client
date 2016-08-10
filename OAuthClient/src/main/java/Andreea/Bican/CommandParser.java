@@ -16,8 +16,12 @@ public class CommandParser {
             return new LoginFacebookEndpoint();
         }else if(input.toLowerCase().startsWith("localhost")) {
             return new LocalHostEndpoint();
-        }else if(input.toLowerCase().startsWith("refreshtoken")) {
+        }else if(input.toLowerCase().startsWith("refreshtoken")
+                || input.toLowerCase().startsWith("refresh token")) {
             return new GoogleRefreshToken();
+        }else if(input.toLowerCase().startsWith("jsessionid")
+                || input.toLowerCase().startsWith("jsession id")) {
+            return new JSessionIdEndpoint();
         }else{
             return null;
         }

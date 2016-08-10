@@ -43,6 +43,8 @@ public class OAuthClientApplication {
             e.printStackTrace();
         } catch (URISyntaxException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             if (br != null) {
                 try {

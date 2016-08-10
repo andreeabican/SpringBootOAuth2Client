@@ -1,6 +1,7 @@
 package Andreea.Bican;
 
 import Andreea.Bican.Commands.AutoLoginEndpoint;
+import Andreea.Bican.Commands.LocalHostEndpoint;
 import Andreea.Bican.Commands.LoginFacebookEndpoint;
 import Andreea.Bican.Commands.LoginGoogleEndpoint;
 
@@ -16,6 +17,8 @@ public class CommandParser {
             return new LoginGoogleEndpoint();
         }else if(input.toLowerCase().startsWith("/login/facebook")) {
             return new LoginFacebookEndpoint();
+        }else if(input.toLowerCase().startsWith("localhost")) {
+            return new LocalHostEndpoint();
         }else{
             return null;
         }

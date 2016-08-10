@@ -43,7 +43,7 @@ public class ClassEndpoint implements ICommand{
         }
     }
 
-    public String sendGet(String targetURL, Map<String,String> header) {
+    public void sendGet(String targetURL, Map<String,String> header) {
 
         try {
             URL restServiceURL = new URL(targetURL);
@@ -68,17 +68,14 @@ public class ClassEndpoint implements ICommand{
             System.out.println("Output from Server:  \n");
 
             while ((line = responseBuffer.readLine()) != null) {
-                output = output + line;
+                output = output + line + "\n";
             }
             httpConnection.disconnect();
-            return output;
-
+            System.out.println(output);
         } catch (MalformedURLException e) {
             e.printStackTrace();
-            return null;
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
         }
     }
 

@@ -28,6 +28,10 @@ public class CommandParser {
         }else if(input.toLowerCase().startsWith("/class")
                 || input.toLowerCase().startsWith("class")) {
             return new ClassEndpoint();
+        }else if(input.toLowerCase().startsWith("studentlist")
+                || input.toLowerCase().startsWith("student list")
+                || input.toLowerCase().startsWith("/studentlist")) {
+            return new StudentListEndpoint();
         }else{
             return null;
         }

@@ -22,6 +22,12 @@ public class CommandParser {
         }else if(input.toLowerCase().startsWith("jsessionid")
                 || input.toLowerCase().startsWith("jsession id")) {
             return new JSessionIdEndpoint();
+        }else if(input.toLowerCase().startsWith("/classes")
+                || input.toLowerCase().startsWith("classes")) {
+            return new ClassesEndpoint();
+        }else if(input.toLowerCase().startsWith("/class")
+                || input.toLowerCase().startsWith("class")) {
+            return new ClassEndpoint();
         }else{
             return null;
         }

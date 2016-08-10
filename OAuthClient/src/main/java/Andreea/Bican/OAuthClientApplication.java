@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URISyntaxException;
 
 @SpringBootApplication
 public class OAuthClientApplication {
@@ -39,6 +40,8 @@ public class OAuthClientApplication {
             }
 
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
             e.printStackTrace();
         } finally {
             if (br != null) {

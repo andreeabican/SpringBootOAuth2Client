@@ -5,49 +5,49 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 @SpringBootApplication
 public class OAuthClientApplication {
-    private static final String targetURL = "http://localhost:8181/loginGoogle";
+
+    private static String message = "Enter endpoint ";
 
     public static void main(String[] args) throws IOException {
 
-    try {
+        System.out.println("Whenever you wanna exit enter q");
 
-        URL restServiceURL = new URL(targetURL);
+        BufferedReader br = null;
+        CommandParser commandParser = new CommandParser();
+        ICommand command = null;
 
-        HttpURLConnection httpConnection = (HttpURLConnection) restServiceURL.openConnection();
-        httpConnection.setRequestMethod("GET");
-        httpConnection.setRequestProperty("Accept", "application/json");
+        try {
 
-        if (httpConnection.getResponseCode() != 200) {
-            throw new RuntimeException("HTTP GET Request Failed with Error code : "
-                    + httpConnection.getResponseCode());
+            br = new BufferedReader(new InputStreamReader(System.in));
+
+            while (true) {
+
+                System.out.print(message);
+                String input = br.readLine();
+
+                if ("q".equals(input)) {
+                    System.out.println("Exit!");
+                    System.exit(0);
+                }
+
+                command = commandParser.getCommand(input);
+                command.execute();
+                System.out.println("-----------\n");
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-
-        BufferedReader responseBuffer = new BufferedReader(new InputStreamReader(
-                (httpConnection.getInputStream())));
-
-        String output;
-        System.out.println("Output from Server:  \n");
-
-        while ((output = responseBuffer.readLine()) != null) {
-            System.out.println(output);
-        }
-
-        httpConnection.disconnect();
-
-    } catch (MalformedURLException e) {
-
-        e.printStackTrace();
-
-    } catch (IOException e) {
-
-        e.printStackTrace();
-
-    }
 }
 }

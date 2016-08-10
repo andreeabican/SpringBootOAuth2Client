@@ -1,9 +1,6 @@
 package Andreea.Bican;
 
-import Andreea.Bican.Commands.AutoLoginEndpoint;
-import Andreea.Bican.Commands.LocalHostEndpoint;
-import Andreea.Bican.Commands.LoginFacebookEndpoint;
-import Andreea.Bican.Commands.LoginGoogleEndpoint;
+import Andreea.Bican.Commands.*;
 
 /**
  * Created by andre on 10.08.2016.
@@ -19,6 +16,8 @@ public class CommandParser {
             return new LoginFacebookEndpoint();
         }else if(input.toLowerCase().startsWith("localhost")) {
             return new LocalHostEndpoint();
+        }else if(input.toLowerCase().startsWith("refreshtoken")) {
+            return new GoogleRefreshToken();
         }else{
             return null;
         }

@@ -44,7 +44,7 @@ public class GoogleRefreshToken implements ICommand {
         if(code!= null){
             Map<String,String> header = new HashMap<>();
             header.put("code", code);
-            String token = sendGet("http://localhost:8181/getGoogleAccessToken", header);
+            String token = sendGet("http://localhost:8181/getGoogleRefreshToken", header);
             System.out.println("Here is your refresh token " + token);
         }else{
             System.out.println("No authorization code");

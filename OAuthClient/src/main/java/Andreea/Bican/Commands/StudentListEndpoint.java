@@ -16,9 +16,12 @@ import java.util.Map;
  */
 public class StudentListEndpoint implements ICommand {
 
-    private String targetURL = "http://localhost:8181/studentlists";
+    private String targetURL = "http://localhost:";
+
+    private String targetEndpoint = "/studentlists";
+
     @Override
-    public void execute() throws Exception {
+    public void execute(int port) throws Exception {
         System.out.print("Enter a valid access token: ");
         String token = readInput();
         if(token == null){
@@ -34,7 +37,7 @@ public class StudentListEndpoint implements ICommand {
         Map<String, String> header = new HashMap<>();
         header.put("token", token);
         header.put("classId", classId);
-        sendGet(targetURL, header);
+        sendGet(targetURL + port + targetEndpoint, header);
     }
 
     private String readInput(){

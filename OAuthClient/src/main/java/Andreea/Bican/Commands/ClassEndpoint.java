@@ -16,10 +16,12 @@ import java.util.Map;
  */
 public class ClassEndpoint implements ICommand{
 
-    private String targetURL = "http://localhost:8181/class";
+    private String targetURL = "http://localhost:";
+
+    private String targetEndpoint = "/class";
 
     @Override
-    public void execute() throws Exception {
+    public void execute(int port) throws Exception {
         System.out.println("Enter class id");
 
        String id = readInput();
@@ -29,7 +31,7 @@ public class ClassEndpoint implements ICommand{
             header.put("id", id);
         }
 
-        sendGet(targetURL, header);
+        sendGet(targetURL + port + targetEndpoint, header);
     }
 
     private String readInput(){

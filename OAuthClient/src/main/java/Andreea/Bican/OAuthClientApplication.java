@@ -12,8 +12,16 @@ public class OAuthClientApplication {
 
     private static String message = "Enter endpoint ";
 
+    private static String port;
+
     public static void main(String[] args) throws IOException {
 
+        int portNr = 8181;
+        if(args[0] != null){
+            int index = args[0].indexOf("=");
+            port = args[0].substring(index+1, args[0].length());
+            portNr = Integer.parseInt(port);
+        }
         System.out.println("Whenever you wanna exit enter q");
 
         BufferedReader br = null;
@@ -36,7 +44,7 @@ public class OAuthClientApplication {
 
                 command = commandParser.getCommand(input);
                 if(command != null) {
-                    command.execute();
+                    command.execute(portNr);
                 }else{
                     System.out.println("Not a good endpoint");
                 }

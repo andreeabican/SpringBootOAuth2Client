@@ -10,12 +10,12 @@ import java.net.URISyntaxException;
  * Created by andre on 10.08.2016.
  */
 public class LocalHostEndpoint implements ICommand {
-    private final String uriString = "http://localhost:8181";
+    private final String targetURL = "http://localhost:";
 
     @Override
-    public void execute() throws URISyntaxException {
+    public void execute(int port) throws URISyntaxException {
         Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
-        URI uri = new URI(uriString);
+        URI uri = new URI(targetURL  + port);
         if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
             try {
                 desktop.browse(uri);

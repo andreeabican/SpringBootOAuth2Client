@@ -16,8 +16,8 @@ import java.util.Map;
 public class GoogleRefreshToken implements ICommand {
 
     @Override
-    public void execute() throws URISyntaxException {
-        String authorizationCodeURL = sendGet("http://localhost:8181/getGoogleCode", null);
+    public void execute(int port) throws URISyntaxException {
+        String authorizationCodeURL = sendGet("http://localhost:" + port + "/getGoogleCode", null);
 
         Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
         URI uri = new URI(authorizationCodeURL);
@@ -44,8 +44,8 @@ public class GoogleRefreshToken implements ICommand {
         if(code!= null){
             Map<String,String> header = new HashMap<>();
             header.put("code", code);
-            String token = sendGet("http://localhost:8181/getGoogleRefreshToken", header);
-            System.out.println("Here is your refresh token " + token);
+            String output = sendGet("http://localhost:" + port + "/getGoogleRefreshToken", header);
+            System.out.println(output);
         }else{
             System.out.println("No authorization code");
         }

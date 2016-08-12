@@ -11,12 +11,14 @@ import java.net.URISyntaxException;
  */
 public class LoginFacebookEndpoint implements ICommand {
 
-    private final String uriString = "http://localhost:8181/login/facebook";
+    private final String targetURL = "http://localhost:";
+
+    private final String targetEndpoint = "/login/facebook";
 
     @Override
-    public void execute() throws URISyntaxException {
+    public void execute(int port) throws URISyntaxException {
         Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
-        URI uri = new URI(uriString);
+        URI uri = new URI(targetURL + port + targetEndpoint);
         if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
             try {
                 desktop.browse(uri);

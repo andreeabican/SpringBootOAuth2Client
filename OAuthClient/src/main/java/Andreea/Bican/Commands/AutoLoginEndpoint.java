@@ -14,13 +14,15 @@ import java.net.URL;
  */
 public class AutoLoginEndpoint implements ICommand {
 
-    private static final String targetURL = "http://localhost:8181/loginGoogle";
+    private static final String targetURL = "http://localhost:";
+
+    private static final String targetEndpoint = "/loginGoogle";
 
     @Override
-    public void execute() {
+    public void execute(int port) {
         try {
 
-            URL restServiceURL = new URL(targetURL);
+            URL restServiceURL = new URL(targetURL + port + targetEndpoint);
 
             HttpURLConnection httpConnection = (HttpURLConnection) restServiceURL.openConnection();
             httpConnection.setRequestMethod("GET");
